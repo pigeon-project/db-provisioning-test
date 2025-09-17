@@ -1,4 +1,4 @@
-name: Prepare terraform files
+name: Provision terraform files
 on:
   push:
     branches:
