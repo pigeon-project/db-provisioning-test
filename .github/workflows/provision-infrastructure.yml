@@ -10,7 +10,7 @@ permissions:
   contents: write
   pull-requests: write
 jobs:
-  implementation:
+  provisioning:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -24,6 +24,6 @@ jobs:
           OPENAI_TOKEN: ${{ secrets.OPENAI_TOKEN }}
       - run: |
           CODING_SPEC=$(curl -fsSL https://raw.githubusercontent.com/pigeon-project/pigeon/refs/heads/main/agents-spec/terraform-apply-agent-spec.md)
-          npx --yes @openai/codex exec --full-auto "$CODING_SPEC"
+          npx --yes @openai/codex exec --dangerously-bypass-approvals-and-sandbox "$CODING_SPEC"
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.TERRAFORM_SA }}
